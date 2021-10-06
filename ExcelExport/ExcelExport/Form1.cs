@@ -92,7 +92,7 @@ namespace ExcelExport
                 values[counter, 5] = f.NumberOfRooms;
                 values[counter, 6] = f.FloorArea;
                 values[counter, 7] = f.Price;
-                values[counter, 8] = f.Price / f.FloorArea;
+                values[counter, 8] = (f.Price * 1000000) / f.FloorArea;
                 counter++;
             }
 
@@ -119,6 +119,7 @@ namespace ExcelExport
             firstcolumn.Interior.Color = Color.LightYellow;
             Excel.Range lastcolumn = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(lastRowID, headers.Length));
             lastcolumn.Interior.Color = Color.LightGreen;
+            lastcolumn.NumberFormat = "0.00";
         }
        
 
