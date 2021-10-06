@@ -68,8 +68,25 @@ namespace ExcelExport
                 xlSheet.Cells[1, i+1] = headers[i];
                 
             }
+            object[,] values = new object[Flats.Count, headers.Length];
+
+            int counter = 0;
+            foreach (Flat f in Flats)
+            {
+                values[counter, 0] = f.Code;
+                values[counter, 1] = f.Code;
+                values[counter, 2] = f.Code;
+                values[counter, 3] = f.Code;
+                values[counter, 4] = "";
+                values[counter, 5] = f.Code;
+                values[counter, 6] = f.Code;
+                values[counter, 7] = f.Code;
+                values[counter, 8] = f.Code;
+            }
 
         }
+
+
 
 
         private void LoadData() 
