@@ -17,7 +17,44 @@ namespace ExcelExport
         List<Flat> Flats;
         RealEstateEntities context = new RealEstateEntities();
 
-        public void LoadData() 
+        Excel.Application xlApp; 
+        Excel.Workbook xlWB; 
+        Excel.Worksheet xlSheet; 
+
+        private void CreateExcel()
+        {
+            try
+            {
+                xlApp = new Excel.Application(); //Excel indítása
+                xlWB = xlApp.Workbooks.Add(Missing.Value); // Új munkafüzet
+                xlSheet = xlWB.ActiveSheet; // Új munkalap
+                CreateTable(); //Tábla létrehozása
+                xlApp.Visible = true;
+                xlApp.UserControl = true;
+
+
+            }
+            catch (Exception ex)
+            {
+                string errMsg = string.Format("Error: {0}\nLine: {1} ", ex.Message, ex.Source);
+                MessageBox.Show(errMsg, "Error");
+
+                //Hiba esetén alkalmazás bezárása
+                xlWB.Close(false, Type.Missing, Type.Missing);
+                xlApp.Quit();
+                xlWB = null;
+                xlApp = null;
+
+            }
+        
+        }
+        private void CreateTable()
+        {
+
+        }
+
+
+        private void LoadData() 
         {
             Flats = context.Flats.ToList();
         }
@@ -26,6 +63,7 @@ namespace ExcelExport
         {
             InitializeComponent();
             LoadData();
+            CreateExcel();
         }
     }
 }
