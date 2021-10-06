@@ -50,6 +50,24 @@ namespace ExcelExport
         }
         private void CreateTable()
         {
+            //tömb, ami tartalmazza a fejléceket
+            string[] headers = new string[]
+            {
+                "Kód",
+                "Eladó",
+                "Oldal",
+                "Kerület",
+                "Lift",
+                "Szobák száma",
+                "Alapterület (m2)",
+                "Ár (mFt)",
+                "Négyzetméter ár (Ft/m2)"
+            };
+            for (int i = 0; i < headers.Length; i++)
+            {
+                xlSheet.Cells[1, i+1] = headers[i];
+                
+            }
 
         }
 
