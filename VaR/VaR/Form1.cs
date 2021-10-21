@@ -15,12 +15,23 @@ namespace VaR
         PortfolioEntities context = new PortfolioEntities();
         List<Tick> Ticks;
 
+        List<Entities.PortfolioItem> Portfolio;
         public Form1()
         {
             InitializeComponent();
 
             Ticks = context.Ticks.ToList();
             dataGridView1.DataSource = Ticks;
+            CreatePortfolio();
+        }
+
+        private void CreatePortfolio()
+        {
+            Portfolio.Add(new Entities.PortfolioItem() { Index = "OTP", Volume = 10 });
+            Portfolio.Add(new Entities.PortfolioItem() { Index = "ZWACK", Volume = 10 });
+            Portfolio.Add(new Entities.PortfolioItem() { Index = "ELMU", Volume = 10 });
+
+            dataGridView2.DataSource = Portfolio;
         }
     }
 }
