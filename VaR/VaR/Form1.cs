@@ -12,6 +12,7 @@ namespace VaR
 {
     public partial class Form1 : Form
     {
+        PortfolioEntities context = new PortfolioEntities();
         public Form1()
         {
             InitializeComponent();
