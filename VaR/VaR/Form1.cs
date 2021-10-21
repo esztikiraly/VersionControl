@@ -78,10 +78,10 @@ namespace VaR
             if (sfd.ShowDialog() == DialogResult.OK)
             {
                 StreamWriter sw = new StreamWriter(sfd.OpenFile());
-                sw.WriteLine("Időszak,", "Nyereség");
+                sw.WriteLine("Időszak, Nyereség") ;
                 for (int i = 0; i < Portfolio.Count; i++)
                 {
-                    sw.WriteLine(i.ToString(), Portfolio[i].ToString());
+                    sw.WriteLine(i.ToString() + "," + Portfolio[i].Volume.ToString());
                 }
                 sw.Dispose();
                 sw.Close();
