@@ -125,7 +125,6 @@ namespace webszolg
                 c.Currency = childElement.GetAttribute("curr");
 
 
-
             }
 
 
