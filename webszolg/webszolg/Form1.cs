@@ -13,10 +13,13 @@ namespace webszolg
 {
     public partial class Form1 : Form
     {
+        BindingList<Entities.RateData> Rates = new BindingList<Entities.RateData>();
+
         public Form1()
         {
             InitializeComponent();
             webservice();
+            dataGridView1.DataSource = Rates;
         }
         private void webservice()
         {
