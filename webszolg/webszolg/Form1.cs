@@ -38,7 +38,7 @@ namespace webszolg
             {
                 currencyNames = comboBox1.SelectedItem.ToString(),
                 startDate = dateTimePicker1.Value.ToString(),
-                endDate = dateTimePicker1.Value.ToString()
+                endDate = dateTimePicker2.Value.ToString()
             };
             var response = mnbService.GetExchangeRates(request);
            var result = response.GetExchangeRatesResult;
