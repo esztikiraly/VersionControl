@@ -16,23 +16,30 @@ namespace webszolg
     public partial class Form1 : Form
     {
         BindingList<Entities.RateData> Rates = new BindingList<Entities.RateData>();
-       
+        BindingList<string> Currencies = new BindingList<string>();
+
         public Form1()
         {
             InitializeComponent();
+            GetCurrenciesfv();
             RefreshData();
         }
 
         private void RefreshData()
         {
+            comboBox1.DataSource = Currencies;
             Rates.Clear();
-            webservice();
+            GetExchangefv();
             dataGridView1.DataSource = Rates;
             chartRateData.DataSource = Rates;
+            
+            
         }
 
-        private void webservice()
+        private void GetExchangefv()
         {
+            
+
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
@@ -56,6 +63,8 @@ namespace webszolg
 
 
                 var childElement = (XmlElement)element.ChildNodes[0];
+                if (childElement == null)
+                    continue;
                 rate.Currency = childElement.GetAttribute("curr");
 
 
@@ -93,6 +102,36 @@ namespace webszolg
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+        private void GetCurrenciesfv()
+        {
+            var mnbService2 = new MNBArfolyamServiceSoapClient();
+
+            var request2 = new GetCurrenciesRequestBody();
+            
+            var response2 = mnbService2.GetCurrencies(request2);
+            var result2 = response2.GetCurrenciesResult;
+
+
+            var xml = new XmlDocument();
+            xml.LoadXml(result2);
+
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                var c = new Entities.RateData();
+                Currencies.Add(c.ToString());
+
+
+
+
+                var childElement = (XmlElement)element.ChildNodes[0];
+                c.Currency = childElement.GetAttribute("curr");
+
+
+
+            }
+
+
         }
     }
        
