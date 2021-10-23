@@ -119,10 +119,7 @@ namespace webszolg
             foreach (XmlElement element in xml.DocumentElement)
             {
                 var c = new Entities.RateData();
-                Currencies.Add(c.ToString());
-
-
-
+                Currencies.Add(c.Currency);
 
                 var childElement = (XmlElement)element.ChildNodes[0];
                 c.Currency = childElement.GetAttribute("curr");
