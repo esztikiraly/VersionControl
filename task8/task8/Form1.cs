@@ -12,9 +12,9 @@ namespace task8
 {
     public partial class Form1 : Form
     {
-        private List<Entities.Ball> _balls = new List<Entities.Ball>();
-        private Entities.BallFactory _factory;
-        private Entities.BallFactory Factory
+        private List<Abstractions.Toy> _toys = new List<Abstractions.Toy>();
+        private Abstractions.IToyFactory _factory;
+        private Abstractions.IToyFactory Factory
         {
             get { return _factory; }
             set { _factory = value; }
@@ -31,7 +31,7 @@ namespace task8
         private void createTimer_Tick(object sender, EventArgs e)
         {
             var ball = Factory.CreateNew();
-            _balls.Add(ball);
+            _toys.Add((Entities.Ball)ball);
             ball.Left = -ball.Width;
             mainPanel.Controls.Add(ball);
         }
@@ -39,18 +39,18 @@ namespace task8
         private void conveyorTimer_Tick(object sender, EventArgs e)
         {
             var maxPosition = 0;
-            foreach (var ball in _balls)
+            foreach (var ball in _toys)
             {
-                ball.MoveBall();
+                ball.MoveToy();
                 if (ball.Left > maxPosition)
                     maxPosition = ball.Left;
             }
 
             if (maxPosition > 1000)
             {
-                var oldestBall = _balls[0];
+                var oldestBall = _toys[0];
                 mainPanel.Controls.Remove(oldestBall);
-                _balls.Remove(oldestBall);
+                _toys.Remove(oldestBall);
             }
         }
     }
