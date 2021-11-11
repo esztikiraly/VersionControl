@@ -33,6 +33,7 @@ namespace task8
             InitializeComponent();
             Factory = new Entities.BallFactory();
             mainPanel.Width = Width;
+            button3.BackColor = Color.DarkGreen;
         }
 
         private void createTimer_Tick(object sender, EventArgs e)
@@ -68,7 +69,10 @@ namespace task8
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Factory = new Entities.BallFactory();
+            Factory = new Entities.BallFactory
+            {
+                BallColor = button3.BackColor
+            };
         }
         private void DisplayNext()
         {
@@ -78,6 +82,17 @@ namespace task8
             _nextToy.Top = label1.Top + label1.Height + 20;
             _nextToy.Left = label1.Left;
             Controls.Add(_nextToy);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            var colorPicker = new ColorDialog();
+
+            colorPicker.Color = button.BackColor;
+            if (colorPicker.ShowDialog() != DialogResult.OK)
+                return;
+            button.BackColor = colorPicker.Color;
         }
     }
 }
