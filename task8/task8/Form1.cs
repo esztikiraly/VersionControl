@@ -14,7 +14,7 @@ namespace task8
     {
         private List<Entities.Ball> _balls = new List<Entities.Ball>();
         private Entities.BallFactory _factory;
-        public Entities.BallFactory Factory
+        private Entities.BallFactory Factory
         {
             get { return _factory; }
             set { _factory = value; }
