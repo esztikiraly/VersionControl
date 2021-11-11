@@ -65,6 +65,7 @@ namespace task8
         private void button1_Click(object sender, EventArgs e)
         {
             Factory = new CarFactory();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -93,6 +94,14 @@ namespace task8
             if (colorPicker.ShowDialog() != DialogResult.OK)
                 return;
             button.BackColor = colorPicker.Color;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Factory = new Entities.PresentFactory
+            {
+                PresentColor = button3.BackColor
+            };
         }
     }
 }
