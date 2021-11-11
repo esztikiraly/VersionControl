@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using task8.Abstractions;
 
 namespace task8.Entities
 {
-    class Ball : Label
+    class Ball : Toy
     {
         public Ball()
         {
@@ -23,7 +24,7 @@ namespace task8.Entities
             DrawImage(e.Graphics);
         }
 
-        protected void DrawImage(Graphics g)
+        protected override void DrawImage(Graphics g)
         {
             g.FillEllipse(new SolidBrush(Color.Blue), 0, 0, Width, Height);
         }
