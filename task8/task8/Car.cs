@@ -12,7 +12,7 @@ namespace task8.Entities
     {
         protected override void DrawImage(Graphics g)
         {
-            Image imageFile = Image.FromFile("Images/car.png");
+            Image imageFile = Image.FromFile("car.PNG");
             g.DrawImage(imageFile, new Rectangle(0, 0, Width, Height));
         }
     }
