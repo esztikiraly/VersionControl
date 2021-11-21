@@ -52,7 +52,7 @@ namespace UnitTestExample.Controllers
         {
             var hasNumber = new Regex(@"[0-9]+");
             var hasUpper = new Regex(@"[A-Z]+");
-            var minChars = new Regex(@".{8,}");
+            var minChars = new Regex(@".{7,}");
             var hasLower = new Regex(@"[a - z]");
 
             if (hasNumber.IsMatch(password))
