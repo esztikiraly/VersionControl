@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnitTestExample.Controllers;
+using UnitTestExample;
 
 namespace UnitTestExample.Test
 {
