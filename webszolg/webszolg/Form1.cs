@@ -21,7 +21,7 @@ namespace webszolg
         public Form1()
         {
             InitializeComponent();
-            GetCurrenciesfv();
+            comboBox1.Text = "EUR";
             RefreshData();
         }
 
@@ -38,12 +38,12 @@ namespace webszolg
 
         private void GetExchangefv()
         {
-            
 
+            
             var mnbService = new MNBArfolyamServiceSoapClient();
             var request = new GetExchangeRatesRequestBody()
             {
-                currencyNames = comboBox1.SelectedItem.ToString(),
+                currencyNames = "EUR",
                 startDate = dateTimePicker1.Value.ToString(),
                 endDate = dateTimePicker2.Value.ToString()
             };
@@ -103,32 +103,10 @@ namespace webszolg
         {
             RefreshData();
         }
-        private void GetCurrenciesfv()
-        {
-            var mnbService2 = new MNBArfolyamServiceSoapClient();
-
-            var request2 = new GetCurrenciesRequestBody();
-            
-            var response2 = mnbService2.GetCurrencies(request2);
-            var result2 = response2.GetCurrenciesResult;
-
-
-            var xml = new XmlDocument();
-            xml.LoadXml(result2);
-
-            foreach (XmlElement element in xml.DocumentElement)
-            {
-                var c = new Entities.RateData();
-                Currencies.Add(c.Currency);
-
-                var childElement = (XmlElement)element.ChildNodes[0];
-                c.Currency = childElement.GetAttribute("curr");
-
-
-            }
+        
 
 
         }
     }
        
-}
+
