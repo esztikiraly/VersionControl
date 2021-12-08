@@ -22,9 +22,12 @@ namespace gepitanulas
         int nbrOfStepsIncrement = 10;
         int generation = 1;
 
+        Brain winnerBrain = null;
         public Form1()
         {
             InitializeComponent();
+            button1.BringToFront();
+            
 
             ga = gc.ActivateDisplay();
             this.Controls.Add(ga);
@@ -34,8 +37,9 @@ namespace gepitanulas
             }
 
             gc.GameOver += Gc_GameOver;
-           //gc.AddPlayer();
-           gc.Start();
+            //gc.AddPlayer();
+            button1.Visible = false;
+            gc.Start();
         }
 
         private void Gc_GameOver(object sender)
@@ -63,7 +67,28 @@ namespace gepitanulas
                 else
                     gc.AddPlayer(b.Mutate());
             }
+
+            var winners = from p in topPerformers
+                          where p.IsWinner
+                          select p;
+            if (winners.Count() > 0)
+            {
+                winnerBrain = winners.FirstOrDefault().Brain.Clone();
+                gc.GameOver -= Gc_GameOver;
+                return;
+                button1.Visible = true;
+            }
+
             gc.Start();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
         }
     }
 }
