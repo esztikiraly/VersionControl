@@ -38,7 +38,7 @@ namespace gepitanulas
 
             gc.GameOver += Gc_GameOver;
             //gc.AddPlayer();
-            button1.Visible = false;
+            
             gc.Start();
         }
 
@@ -76,7 +76,7 @@ namespace gepitanulas
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
                 gc.GameOver -= Gc_GameOver;
                 return;
-                button1.Visible = true;
+                
             }
 
             gc.Start();
@@ -90,5 +90,6 @@ namespace gepitanulas
             ga.Focus();
             gc.Start(true);
         }
+
     }
 }
